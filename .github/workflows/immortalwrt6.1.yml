@@ -65,6 +65,9 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH immortalwrt
         ln -sf /workdir/immortalwrt $GITHUB_WORKSPACE/immortalwrt
         cd immortalwrt
+        git tag
+        git branch
+        git checkout v23.05.3
         useVersionInfo=$(git show -s --date=short --format="%0AAuthor: %an%0Adate: %cd%0Acommit: %s%0Acommit hash: %H")
         echo "useVersionInfo=$useVersionInfo" >> $GITHUB_ENV
         echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV   
