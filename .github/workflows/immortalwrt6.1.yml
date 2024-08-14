@@ -123,6 +123,13 @@ jobs:
       if: (!cancelled())
       run: df -hT
 
+    - name: 列出bin目录中的文件
+      run: |
+        echo "Listing all files in the immortalwrt/bin directory:"
+        cd immortalwrt/bin
+        find . -type f
+        echo "Files in immortalwrt/bin directory have been listed."
+
     - name: 上传bin压缩目录
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
@@ -136,6 +143,7 @@ jobs:
       run: |
         cd immortalwrt/bin/targets/*/*
         rm -rf packages && mkdir packages
+        find . -type f \( -name "*.bin" -o -name "*.img" -o -name "*.img.gz" \) -exec mv -f {} packages
         find -name "*esxi-flat.vmdk*" | xargs -i mv -f {} packages
         find -name "*kernel.bin*" | xargs -i mv -f {} packages
         find -name "*rootfs*" | xargs -i mv -f {} packages
