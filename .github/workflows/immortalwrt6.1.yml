@@ -134,25 +134,19 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        cd immortalwrt/bin/targets/*/*
-        rm -rf packages && mkdir packages
-        find -name "*Image*" | xargs -i mv -f {} packages
-        find -name "*esxi-flat.vmdk*" | xargs -i mv -f {} packages
-        find -name "*kernel.bin*" | xargs -i mv -f {} packages
-        find -name "*rootfs*" | xargs -i mv -f {} packages
-        find -name "*.manifest*" | xargs -i mv -f {} packages
-        find -name "*vmlinuz*" | xargs -i mv -f {} packages
-        find -name "*esxi.vmdk*" | xargs -i mv -f {} packages
-        rm -rf packages
+        cd immortalwrt
+        mkdir -p upgrade
+        cp -rf bin/targets/*/* upgrade/
+        cd upgrade
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
+        
     - name: 上传固件到github
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: ImmortalWrt_6.1${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE }}
-
+        path: ${{ env.FIRMWARE }}/*.{bin,img,img.gz}
     
     - name: 发布至release
       id: release
@@ -160,7 +154,6 @@ jobs:
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
         name: ${{ env.FILE_TIME }} 「 immortalwrt-6.1-X86-64 」
-        artifacts: ${{ env.FIRMWARE }}/*.{img,bin}
         allowUpdates: true
         tag: ${{ env.TAG_TIME }}
         commit: main
@@ -171,8 +164,7 @@ jobs:
           由衷感谢所有为ImmortalWrt无私奉献的大佬们
           📥 固件下载
           🔗 [国外WT网盘](${{ steps.wetransfer.outputs.url }})
-        artifacts: ${{ env.FIRMWARE }}/*
-
+        artifacts: ${{ env.FIRMWARE }}/*.{bin,img,img.gz}
     - name: 清理旧的workflow
       uses: FunctionXJB/delete-workflow-runs@main
       with:
