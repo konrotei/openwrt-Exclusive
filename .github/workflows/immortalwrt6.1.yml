@@ -160,6 +160,7 @@ jobs:
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
         name: ${{ env.FILE_TIME }} 「 immortalwrt-6.1-X86-64 」
+        artifacts: ${{ env.FIRMWARE }}/*.{img,bin}
         allowUpdates: true
         tag: ${{ env.TAG_TIME }}
         commit: main
