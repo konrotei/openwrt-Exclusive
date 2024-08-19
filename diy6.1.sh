@@ -8,10 +8,10 @@
 # Blog: https://p3terx.com
 #=============================================================
 
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.1/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.1/g' ./target/linux/x86/Makefile
-sed -i 's/CONFIG_DEFAULT_firewall4=y/CONFIG_DEFAULT_firewall=y/g' .config
-sed -i '/kmod-ac97/d; /kmod-sound-hda-core/d; /kmod-sound-hda-codec-realtek/d; /kmod-sound-hda-codec-via/d; /kmod-sound-via82xx/d; /kmod-sound-hda-intel/d; /kmod-sound-hda-codec-hdmi/d; /kmod-sound-i8x0/d; /kmod-usb-audio/d; /kmod-usb-hid/d; /kmod-usb-net/d; /kmod-usb-net-asix/d; /kmod-usb-net-asix-ax88179/d; /kmod-usb-net-rtl8150/d; /kmod-usb-net-rtl8152-vendor/d' ./target/linux/x86/Makefile
+# sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.1/g' ./target/linux/x86/Makefile
+# sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.1/g' ./target/linux/x86/Makefile
+# sed -i 's/CONFIG_DEFAULT_firewall4=y/CONFIG_DEFAULT_firewall=y/g' .config
+# sed -i '/kmod-ac97/d; /kmod-sound-hda-core/d; /kmod-sound-hda-codec-realtek/d; /kmod-sound-hda-codec-via/d; /kmod-sound-via82xx/d; /kmod-sound-hda-intel/d; /kmod-sound-hda-codec-hdmi/d; /kmod-sound-i8x0/d; /kmod-usb-audio/d; /kmod-usb-hid/d; /kmod-usb-net/d; /kmod-usb-net-asix/d; /kmod-usb-net-asix-ax88179/d; /kmod-usb-net-rtl8150/d; /kmod-usb-net-rtl8152-vendor/d' ./target/linux/x86/Makefile
 # sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.2/g' ./target/linux/x86/Makefile
 
 
