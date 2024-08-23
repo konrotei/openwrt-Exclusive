@@ -6,7 +6,7 @@
 # Author: P3TERX
 # Blog: https://p3terx.com
 #=================================================
-name: ImmortalWrt-6.1
+name: ImmortalWrt-5.1
 
 on:
   repository_dispatch:
